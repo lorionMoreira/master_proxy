@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  # Service 1: The Traffic Cop (Master Nginx)
+  master_nginx:
+    image: nginx:alpine
+    container_name: master_nginx
+    restart: always
+    ports:
+      - "80:80"  # <--- CRITICAL: Catches the Tailscale traffic
+    volumes:
+      - ./master-nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
